@@ -1,0 +1,38 @@
+/**Given two strings s and t, write a function to determine if t is an anagram of s.
+
+For example,
+s = "anagram", t = "nagaram", return true.
+s = "rat", t = "car", return false.
+**/
+// 相同字母异序词，关键点是字符串数目相同，相同字母的数目也相同（也可是主要判决条件）
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int str[26],tr[26];//英文字母26个
+    	//表示str，tr中的第i个字母初始为0
+    	for (int i = 0; i < 26; ++i)
+    	{
+    		str[i]=0;
+    		tr[i]=0;
+    	}
+    	//如果两字符串数不相等，直接输出false
+    	if (s.size()!=t.size())
+    	{
+    		return false;
+    	}
+    	//s[i]表示s字符串的第I个字母，'A'到'Z'对应的ASCII码为97到122，所以“s[i]-97”是将第i个字母转化为对应的数字
+    	//str[k]的值表示第k个字母出现的次数
+    	for(int i=0;i<s.size();i++)
+    	{
+    		str[s[i]-97]++;
+    		tr[t[i]-97]++;
+    	}
+    	//比对两字符串相同字母的数目是否相同，若有不同，则返回false，若都相同，则返回true
+    	for (int i = 0; i < 26; ++i)
+    	{
+    		if (str[i]!=tr[i])return false;
+    	}
+        return true;//在这里
+    }
+};
