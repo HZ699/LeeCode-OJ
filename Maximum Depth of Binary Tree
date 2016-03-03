@@ -1,0 +1,35 @@
+/**Given a binary tree, find its maximum depth.
+
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+**/
+//求一个二叉树的最大深度
+//想法是用递归思想求解。
+//递归思想的要求有一个最基本的基础，如P指针所指的二叉树的为空时，该树的深度为0（递归到最基本可求的基础）
+
+//代码如下
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {//必须要有返回值，不能为返回空，如将改行的int改为void不可以。
+        TreeNode *p=root;
+        if(p==NULL){//递归基础
+            return 0;
+        }
+        //每次递归的具体操作
+        int left=maxDepth(p->left);//left的值是递归maxDepth(p->left)返回的值，“p->left”注意
+        int right=maxDepth(p->right);//             “p->right”注意
+        if(left>=right){
+            return left+1;
+        }else{
+            return right+1;
+        }
+    }
+};
