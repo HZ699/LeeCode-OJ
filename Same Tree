@@ -2,7 +2,7 @@
 
 Two binary trees are considered equal if they are structurally identical and the nodes have the same value.*/
 //问题:判断两个二叉树是否相等，不仅位置相等，值也要相等
-//关键点：
+//关键点：递归调用思想，递归对左右子树各自对比。
 
 
 
@@ -22,7 +22,8 @@ public:
             return true;
         }else if((p!=NULL&&q==NULL)||(p==NULL&&q!=NULL)){
             return false;
-        }
+        }      //上面是递归的基础点。
+        //下面是递归的抽象逻辑顺序
         else if(p->val==q->val){
             if(isSameTree(p->left,q->left)&&isSameTree(p->right,q->right)){
                 return true;
